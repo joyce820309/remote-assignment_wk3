@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AJAX with JavaScript</title>
+    
+    
+    <script>
+           
+    //1. create an XMLHttpRequest Object
+     let xhr = new XMLHttpRequest()
+    
+    //2. create a callback function
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('ajax').innerHTML = xhr.responseText
+            
+            let number = document.querySelector('.number')
+            let result = ((1 + Number(number))*Number(number))/2
+            let answer = `<div> Answer: </div>`
+            answer += `<span>${result}</span>` //WHY STILL PRINT 'NaN'
+            document.querySelector('.answer').innerHTML = answer
+         
+        }
+    }
+    
+    
+    //3. Open a request: .open(method, URL)
+    xhr.open('GET', 'sum.html')
+    
+    //4. Send the request
+    
+    xhr.send()
+
+    //   document.getElementById('load').style.display = 'none'
+    
+    
+    </script>
+
+
+</head>
+
+<body>
+    <div id='ajax'>
+        <h3> Enter a number</h3>
+        <form >
+            <input type="text" name="number" class='number'>
+            <input type="submit" value="calculate" class='submit'>
+        </form>
+
+            <div class='answer'> 
+            <!-- ADD here -->
+            </div>
+    </div>
+</body>
+</html>
+
+
